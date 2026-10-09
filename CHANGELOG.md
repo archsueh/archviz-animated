@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.2.2 (2026-10-09)
+
+### Changed
+
+- **套件 `KIT_VERSION` 1 → 2，本仓新增 `pycompile` 检查段。** 递归扫全仓 `.py`（此前
+  CI/hook 的 `compileall -q scripts` 只覆盖 `scripts/`），用内建 `compile()` 逐文件编译，
+  **不往工作树写 `__pycache__`**。上一个版本里那个「从未编译过」的
+  `render_yang_mills.py` 就是被窄口径的编译步骤放过去的 —— 它落在 `scripts/` 里纯属
+  运气，全族唯一的坏文件在 `examples/`，那条路径五仓都没覆盖。
+- **`deps` 增加反方向核对**：声明了但没有任何代码 import 的依赖会失败，豁免必须写进
+  `deps.unused_exempt` 并说明理由。
+- CI 与 pre-commit 的 `compileall` 步骤移除（由套件 `pycompile` 接管）；注释里写死的
+  检查条数删掉，改成指向 `python3 scripts/check_archviz.py --list`。
+
+本版本无 SKILL.md 内容改动，仅版本号与工具链。
+
 ## 0.2.1 (2026-10-09)
 
 ### Fixed

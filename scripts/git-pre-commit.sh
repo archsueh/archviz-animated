@@ -15,7 +15,7 @@ python3 "$ROOT/scripts/check_archviz.py"
 echo "Checking consistency kit's own checker..."
 python3 "$ROOT/scripts/check_archviz.py" --self-test >/dev/null
 
-# Note the limit: byte-compilation never *imports*, so it cannot see a missing
-# dependency — that is the kit's `deps` check's job, not this one's.
-echo "Byte-compiling..."
-python3 -m compileall -q "$ROOT/scripts"
+# Byte-compilation used to be its own `compileall -q "$ROOT/scripts"` step here.
+# It is now the kit's `pycompile` check, which walks the whole repo instead of
+# one directory and uses the builtin `compile()`, so it leaves no `__pycache__`
+# in the tree it inspects.

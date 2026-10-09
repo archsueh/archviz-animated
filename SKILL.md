@@ -7,7 +7,7 @@ description: |
   触发词：动态架构图、animated diagram、架构动画、excalidraw、技术图动效、gif 架构图、柱状图动画、数学可视化、物理场可视化、bar chart animation、math visualization、yang-mills gauge field
 license: MIT
 metadata:
-  version: 0.2.1
+  version: 0.2.2
   source: https://github.com/archsueh/archviz-animated
   risk: safe
   author: archsueh
