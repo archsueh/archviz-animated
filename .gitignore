@@ -1,0 +1,6 @@
+# Python bytecode (the CI/pre-commit `compileall` step writes these)
+__pycache__/
+*.py[cod]
+
+# Local virtualenv, if one is ever created
+.venv/

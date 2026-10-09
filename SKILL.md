@@ -7,7 +7,7 @@ description: |
   触发词：动态架构图、animated diagram、架构动画、excalidraw、技术图动效、gif 架构图、柱状图动画、数学可视化、物理场可视化、bar chart animation、math visualization、yang-mills gauge field
 license: MIT
 metadata:
-  version: 0.2.0
+  version: 0.2.1
   source: https://github.com/archsueh/archviz-animated
   risk: safe
   author: archsueh
@@ -327,5 +327,12 @@ PYTHONPATH="" /usr/bin/python3 scripts/render_yang_mills.py \
 | `references/spec-format.md` | JSON spec 完整字段规范 |
 | `references/yang-mills-analysis.md` | 杨-米尔斯参考视频的像素级分析：正确 shader 调色表（R/G 比值分带）+ v1→v4 失败记录 |
 | `references/video-reference-replication.md` | 无 vision API 时复刻参考视频风格的分析流程：ffprobe 元数据 → ffmpeg 抽帧 → 亮度分带 → R/G 比值判色 → 通道主导性 → 径向剖面 |
+| `references/design-judgment.md` | 交付前自检：五段判断链 / 六维度 / 选模型路由 / 三条硬边界 |
 
 > 复刻参考视觉时**先出数据报告再写 shader**，不要凭文字描述猜配色——实测「发光的金色表面」实际是冷绿橄榄，文字描述会骗人。
+
+<!-- design-judgment-integration -->
+## 交付前自检 (Post-Generation Design Judgment)
+
+交付前必须跑 `design-judgment` 技能的五段判断链做自检，不要只交付「技术上成功的第一稿」——
+完整规则（五段链 / 六维度 / 选模型路由 / 三条硬边界）见 [`references/design-judgment.md`](references/design-judgment.md)。

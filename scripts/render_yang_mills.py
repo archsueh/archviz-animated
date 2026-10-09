@@ -255,6 +255,12 @@ def create_animation(outpath, frames=N_FRAMES, fps=FPS):
 
 
 def main():
+    # `global` must precede every use in the function, not just the assignment.
+    # It used to sit after the two `add_argument(default=...)` lines below, which
+    # read these names — that is a SyntaxError, so this script had never been
+    # runnable. Found by the new byte-compile CI step.
+    global GAUGE_STRENGTH, SELF_COUPLING
+
     parser = argparse.ArgumentParser(description='Yang-Mills gauge field visualization')
     parser.add_argument('--out', default='yang-mills.mp4', help='Output file')
     parser.add_argument('--frames', type=int, default=N_FRAMES)
@@ -263,11 +269,10 @@ def main():
     parser.add_argument('--strength', type=float, default=GAUGE_STRENGTH)
     parser.add_argument('--coupling', type=float, default=SELF_COUPLING)
     args = parser.parse_args()
-    
-    global GAUGE_STRENGTH, SELF_COUPLING
+
     GAUGE_STRENGTH = args.strength
     SELF_COUPLING = args.coupling
-    
+
     create_animation(args.out, args.frames, args.fps)
 
 

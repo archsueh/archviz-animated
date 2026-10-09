@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.2.1 (2026-10-09)
+
+### Fixed
+
+- **`scripts/render_yang_mills.py` 根本编译不过 —— 这个脚本从来没有运行过。**
+  `main()` 在第 263–264 行**读取** `GAUGE_STRENGTH` / `SELF_COUPLING`（作为
+  `add_argument(default=...)`），却在第 267 行才写 `global` 声明 ——
+  Python 要求 `global` 出现在函数内**任何**使用之前，所以这是 `SyntaxError:
+  name 'GAUGE_STRENGTH' is used prior to global declaration`。修法是把 `global`
+  移到 `main()` 第一行。**这是新加的字节编译 CI 步骤上线后立刻抓到的第一个真缺陷**
+  —— 在此之前没有任何东西会执行或编译这个文件。
+- **`requirements.txt` 只声明了 Pillow，漏了三个真实 import。**
+  `scripts/render_yang_mills.py` 顶层 `import matplotlib / numpy / scipy` ——
+  干净检出跑这个脚本会直接 `ImportError`。现补齐，并由套件新增的 `deps` 检查守住
+  不再复发。同一缺陷在**家族五个仓库里全部存在**。
+- **`references/` 里有文件谁也到不了？没有。** 本仓三个参考文件此前都已被
+  SKILL.md 的 `## [9] 参考文档` 表点名 —— 是家族里唯一本来就合规的仓库。
+  套件新增的 `coverage` 检查在此首跑即通过。
+
+### Changed
+
+- **`design-judgment` 集成块移出 SKILL.md 正文。** 2026-10-09 20:32:55 有并行会话
+  在五个 archviz 仓库的 SKILL.md 末尾各追加了一段 956 字节的
+  `<!-- design-judgment-integration -->` 块。**内容逐字保留，未删改一字**，
+  现移入 `references/design-judgment.md`，正文只留一行指针，并在
+  `## [9] 参考文档` 表里补一行。SKILL.md 10,950 → 10,480 字节。
+
+### Added
+
+- **`coverage` 检查** —— `references/*.md` 必须从 SKILL.md 可达。
+- **`deps` 检查** —— 把仓库里每个第三方 import 与清单对账。
+
 ## 0.2.0 (2026-10-09)
 
 This repo had **no CI and no changelog** before this release — there was no

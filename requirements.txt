@@ -1,1 +1,16 @@
+# Python dependencies for the archviz-animated scripts.
+#   pip install -r requirements.txt
+#
+# The consistency kit (scripts/check_archviz.py) is stdlib-only on purpose and
+# needs none of these — it has to be able to guard this repo from a bare Python.
+
+# scripts/render_animated_bar_chart.py, render_animated_diagram.py,
+# render_math_visualization.py — frame composition.
 Pillow>=10.0.0
+
+# scripts/render_yang_mills.py only — the Yang–Mills reference-video
+# replication. These three are the heaviest deps in the family; the other two
+# scripts run without them.
+matplotlib>=3.7
+numpy>=1.24
+scipy>=1.11
