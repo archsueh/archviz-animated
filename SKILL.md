@@ -1,12 +1,13 @@
 ---
 name: archviz-animated
 description: |
+  3 模式：柱状图动画 (Bar Chart Animation)、数学可视化动画 (Math Visualization)、物理场可视化 (Yang-Mills Gauge Field)。
   技术架构动态图全流程：内容分析 → JSON spec 构建 → Python 渲染 → 三交付物（.excalidraw 可编辑源 + PNG 静态图 + GIF 动画）。
   黑底手绘风格，glow 流光 + pulse 模块动效，无需 image API，纯代码生成，结果完全确定可复现。
-  触发词：动态架构图、animated diagram、架构动画、excalidraw、技术图动效、gif 架构图
+  触发词：动态架构图、animated diagram、架构动画、excalidraw、技术图动效、gif 架构图、柱状图动画、数学可视化、物理场可视化、bar chart animation、math visualization、yang-mills gauge field
 license: MIT
 metadata:
-  version: 0.1.0
+  version: 0.2.0
   source: https://github.com/archsueh/archviz-animated
   risk: safe
   author: archsueh

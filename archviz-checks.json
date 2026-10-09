@@ -1,0 +1,45 @@
+{
+  "kit": 1,
+  "skill_md": "SKILL.md",
+  "skill_md_max_bytes": 11000,
+  "require_lf_pin": true,
+
+  "version": {
+    "changelog": "CHANGELOG.md"
+  },
+
+  "registries": {
+    "modes": {
+      "kind": "source_regex",
+      "file": "SKILL.md",
+      "entry": "^## \\[[678]\\]\\s*(.+?)\\s*$",
+      "flags": "M"
+    }
+  },
+
+  "routing": {
+    "registries": ["modes"],
+    "also_check_triggers": false
+  },
+
+  "counts": [
+    {
+      "id": "modes",
+      "truth": { "kind": "registry_len", "registry": "modes" },
+      "assertions": [
+        { "file": "SKILL.md", "regex": "(\\d+)\\s*模式：" }
+      ]
+    }
+  ],
+
+  "cjk": {
+    "scan": [
+      "SKILL.md",
+      "CHANGELOG.md",
+      "references/*.md",
+      "demo-math.html",
+      "examples/*.html"
+    ],
+    "require_charset": ["demo-math.html", "examples/*.html"]
+  }
+}
